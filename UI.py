@@ -15,7 +15,7 @@ class UIConfig(QMainWindow):
         self.frontButtons()
         self.searchArrange()
 
-    #? TopLevel Windows
+    #? Open TopLevel Windows
     def openAddUI(self):
         self.add_ui = AddUIConfig()
         self.add_ui.show()
@@ -67,7 +67,9 @@ class UIConfig(QMainWindow):
         searchBox.setStyleSheet(readStyle()[2]+readStyle()[5])
 
         searchButton = QPushButton("", self)
+        searchButton.setIcon(QIcon("UI_icons\\search.svg"))
         searchButton.setStyleSheet(readStyle()[1]+readStyle()[4])
+        searchButton.setIconSize(BTSize(35, 35))
         searchButton.setFixedSize( 52, 52 )
         searchButton.move( 725, 35 )
 
@@ -80,14 +82,15 @@ if __name__ == '__main__':
                 style_rules = { 'Css-Ids': [ "#add_button", "#universal_button", "#searchbox" ],
                                 'Qt-Ids': [ "QPushButton", "QPushButton", "QLineEdit" ] }
 
-                if index < int(len(style_rules['Css-Ids'])):
+                css_index_length = int(len(style_rules['Css-Ids']))
+                if index < css_index_length:
                     if rule.type == rule.STYLE_RULE and rule.selectorText == style_rules['Css-Ids'][index]:
                         buttonStyle = rule.cssText.replace(style_rules['Css-Ids'][index], style_rules['Qt-Ids'][index])
                         button_style.append(str(buttonStyle.replace("\n", "")))
 
                 else:
-                    if rule.type == rule.STYLE_RULE and rule.selectorText == style_rules['Css-Ids'][index-3]+":hover":
-                        buttonStyle_hover = rule.cssText.replace(style_rules['Css-Ids'][index-3]+":hover", style_rules['Qt-Ids'][index-3]+":hover")
+                    if rule.type == rule.STYLE_RULE and rule.selectorText == style_rules['Css-Ids'][index-css_index_length]+":hover":
+                        buttonStyle_hover = rule.cssText.replace(style_rules['Css-Ids'][index-css_index_length]+":hover", style_rules['Qt-Ids'][index-css_index_length]+":hover")
                         button_style.append(str(buttonStyle_hover.replace("\n", "")))
 
         return button_style
