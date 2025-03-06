@@ -72,6 +72,7 @@ class UIConfig(QMainWindow):
         searchButton.setIconSize(BTSize(35, 35))
         searchButton.setFixedSize( 52, 52 )
         searchButton.move( 725, 35 )
+        searchButton.clicked.connect( lambda : print(searchBox.text()) )
 
 if __name__ == '__main__':
     def readStyle():
