@@ -2,10 +2,10 @@ from PyQt5.QtWidgets import QWidget
 from PyQt5.QtCore import QSize as BTSize, Qt
 
 class SettingsUIConfig(QWidget):
-    def __init__(self):
+    def __init__(self, STYLES):
         super().__init__()
         self.setWindowTitle("Settings")
-        self.setStyleSheet("background-color: #242424")
+        self.setStyleSheet("QWidget"+STYLES['UI_BG'])
         self.setGeometry( 295, 164, 625, 565 )
 
     def directoryDialog():

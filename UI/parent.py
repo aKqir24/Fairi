@@ -1,3 +1,4 @@
+from .icons import parent_icon
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import QSize as BTSize, Qt
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QFrame, QPushButton, QWidget, QLineEdit, QLabel, QHBoxLayout, QVBoxLayout
@@ -11,20 +12,19 @@ class UIConfig(QMainWindow):
         self.widgets_wrapper = QVBoxLayout(self.center_widget)
         self.setWindowTitle("Just Arrange")
         self.setGeometry( 168, 164, 875, 565 )
-        self.setStyleSheet("background-color: #242424")
-        searchArea = self.searchArrange(STYLE_OWNER)
-        arrangeFrame = self.addArrangeFrame()
-        self.frontWidgets(STYLE_OWNER, searchArea, arrangeFrame)
+        self.setStyleSheet("QMainWindow"+self.STYLES['UI_BG'])
+        self.frontWidgets( STYLE_OWNER, self.searchArrange(STYLE_OWNER),
+                           self.addArrangeFrame() )
 
     #? Open TopLevel Windows
     def openAddUI(self):
-        from Add_UI import AddUIConfig
+        from .items import AddUIConfig
         self.add_ui = AddUIConfig(self.STYLES)
         self.add_ui.show()
 
     def openSettingsUI(self):
         #TODO: Make A Setting For Icons In buttons With Test or not
-        from Settings_UI import SettingsUIConfig
+        from .settings import SettingsUIConfig
         self.settings_ui = SettingsUIConfig(self.STYLES)
         self.settings_ui.show()
 
@@ -38,11 +38,11 @@ class UIConfig(QMainWindow):
         SettingsButton.setMinimumSize(60,60)
         searchButton, searchBox = searchArea
 
-        def setButtonsConfig():
+        def setButtonsConfig(): 
             #? Icons
-            AddButton.setIcon(QIcon("UI_icons\\add.svg"))
-            StartButton.setIcon(QIcon("UI_icons\\play_arrow.svg"))
-            SettingsButton.setIcon(QIcon("UI_icons\\settings.svg"))
+            AddButton.setIcon(QIcon(f"{parent_icon[0]}"))
+            StartButton.setIcon(QIcon(f"{parent_icon[1]}"))
+            SettingsButton.setIcon(QIcon(f"{parent_icon[2]}"))
             AddButton.setIconSize(BTSize(40, 40))
             StartButton.setIconSize(BTSize(40, 40))
             SettingsButton.setIconSize(BTSize(30, 30))
@@ -60,11 +60,10 @@ class UIConfig(QMainWindow):
             def addToLayout():
                 widgets_container = QHBoxLayout(self.center_widget)
                 widgets_container.setSpacing(8)
-                widgets_container.addWidget(AddButton)
-                widgets_container.addWidget(StartButton)
-                widgets_container.addWidget(searchBox)
-                widgets_container.addWidget(searchButton)
-                widgets_container.addWidget(SettingsButton)
+                for widget in \
+                    [ AddButton, StartButton, searchBox, searchButton, SettingsButton ]:
+                    widgets_container.addWidget(widget)
+ 
                 widgets_container.setContentsMargins( 0, 0, 0, 8 )
                 self.widgets_wrapper.addLayout(widgets_container)
                 self.widgets_wrapper.setContentsMargins( 25, 25, 25, 25 )
@@ -81,7 +80,7 @@ class UIConfig(QMainWindow):
         searchBox.setMinimumHeight( 60 )
 
         searchButton = QPushButton("", self)
-        searchButton.setIcon(QIcon("UI_icons\\search.svg"))
+        searchButton.setIcon(QIcon(f"{parent_icon[3]}"))
         searchButton.setStyleSheet(STYLES['Search_BT'])
         searchButton.setIconSize(BTSize(35, 35))
         searchButton.setMinimumSize( 60, 60 )
@@ -93,7 +92,6 @@ class UIConfig(QMainWindow):
         arrange_container = QFrame()
         arrange_container.setMinimumSize(10,10)
         arrange_container.setStyleSheet("background-color: #2F2F2F")
-
         return arrange_container
 
 def initiateMainUI(STYLE_OWNER):

@@ -1,4 +1,4 @@
-from Start_ import QWidget, QLabel, BTSize, Qt
+from .parent import QWidget, QLabel, BTSize, Qt
 
 class AddUIConfig(QWidget):
     def __init__(self, STYLES):
