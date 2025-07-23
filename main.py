@@ -14,12 +14,10 @@ if __name__ == '__main__':
             css_index_length = int(len(style_rules['Css-Ids'])) 
             try:
                 if rule.type == rule.STYLE_RULE and rule.selectorText == style_rules['Css-Ids'][index]:
-                    cssStyle = rule.cssText.replace(style_rules['Css-Ids'][index], style_rules['Qt-Ids'][index])
-                    print(f"N={index}")
+                    cssStyle = rule.cssText.replace(style_rules['Css-Ids'][index], style_rules['Qt-Ids'][index]) 
             except IndexError:
                 if rule.type == rule.STYLE_RULE and rule.selectorText == style_rules['Css-Ids'][index-css_index_length]+":hover":
                     cssStyle_hover = rule.cssText.replace(style_rules['Css-Ids'][index-css_index_length]+":hover", style_rules['Qt-Ids'][index-css_index_length]+":hover")
-                    print(f"H={index}")
                     continue
             ui_style.append(str(cssStyle.replace("\n", "")))
     
