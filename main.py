@@ -23,10 +23,9 @@ if __name__ == '__main__':
     
     STYLE_OWNER = {
             "UI_BG": ui_style[0],
-                    "Add_BT": ui_style[1]+ui_style[5],
-                    "Default_BT": ui_style[2]+ui_style[6],
-                    "Search_BT": ui_style[2]+ui_style[6],
-                    "Search_Box":ui_style[3]+ui_style[7],
-                    "Labels_Txt": [ ui_style[4], ui_style[8] ]
-                  }
+            "Add_BT": ui_style[1]+ui_style[5],
+            "Default_BT": ui_style[2]+ui_style[6],
+            "Search_BT": ui_style[2]+ui_style[6],
+            "Search_Box":ui_style[3]+ui_style[7],
+            "Labels_Txt": [ ui_style[4], ui_style[8] ] }
     initiateMainUI(STYLE_OWNER)

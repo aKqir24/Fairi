@@ -58,7 +58,7 @@ class UIConfig(QMainWindow):
             SettingsButton.clicked.connect(self.openSettingsUI)
 
             def addToLayout():
-                widgets_container = QHBoxLayout(self.center_widget)
+                widgets_container = QHBoxLayout()
                 widgets_container.setSpacing(8)
                 for widget in \
                     [ AddButton, StartButton, searchBox, searchButton, SettingsButton ]:
@@ -68,7 +68,6 @@ class UIConfig(QMainWindow):
                 self.widgets_wrapper.addLayout(widgets_container)
                 self.widgets_wrapper.setContentsMargins( 25, 25, 25, 25 )
                 self.widgets_wrapper.addWidget(arrangeFrame)
-                self.setLayout(self.widgets_wrapper)
 
             return addToLayout()
         return setButtonsConfig()
